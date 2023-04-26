@@ -1,0 +1,46 @@
+plugins {
+    id "net.serenity-bdd.serenity-gradle-plugin" version "3.6.7"
+    id 'java'
+    id 'idea'
+}
+defaultTasks 'clean','test','aggregate'
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+sourceCompatibility = 11
+targetCompatibility = 11
+
+dependencies {
+    implementation 'org.seleniumhq.selenium:selenium:2.0b3'
+    implementation 'junit:junit:4.13.2'
+    implementation 'org.seleniumhq.selenium:selenium-api:4.8.1'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.8.1'
+    implementation 'org.seleniumhq.selenium:selenium-common:2.0b1'
+    implementation 'org.seleniumhq.selenium:selenium-server:3.141.59'
+    implementation "org.assertj:assertj-core:3.24.2"
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
+    implementation 'io.cucumber:cucumber-core:7.11.1'
+    implementation 'io.cucumber:cucumber-java:7.11.1'
+    implementation 'net.serenity-bdd:serenity-core:3.6.12'
+    implementation "net.serenity-bdd:serenity-junit5:3.6.12"
+    implementation "net.serenity-bdd:serenity-screenplay:3.6.12"
+    implementation "net.serenity-bdd:serenity-ensure:3.6.12"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:3.6.12"
+    implementation "net.serenity-bdd:serenity-cucumber:3.6.12"
+    implementation "org.junit.jupiter:junit-jupiter-api:5.9.2"
+    implementation "ch.qos.logback:logback-classic:1.1.1"
+    implementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.14.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
+}
+gradle.startParameter.continueOnFailure = true
+test.finalizedBy(aggregate)
+
+test {
+    useJUnitPlatform()
+}
